@@ -5,7 +5,7 @@ with open('requirements') as requirements_file:
 
 setuptools.setup(
     name="scrapiyo",
-    version="0.0.0",
+    version="1.0.0",
     description="Piyo Scraper",
     author="kazuhikoh",
     packages=setuptools.find_packages(),
