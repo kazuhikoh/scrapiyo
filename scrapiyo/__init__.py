@@ -82,6 +82,12 @@ curl http://piyo.fc2.com/user/ | scrapiyo
         default=False,
         help='show message digest instead of message'
     )
+    parser.add_argument(
+        '-l', '--latest',
+        action='store_true',
+        default=False,
+        help='show only latest message'
+    )
     args = parser.parse_args()
 
     stdin = sys.stdin.read()
@@ -90,6 +96,10 @@ curl http://piyo.fc2.com/user/ | scrapiyo
         for it in messages_of(stdin):
             out = gen_hash(it[0] + it[1] + it[2])
             print(out)
+    elif args.latest:
+        it = list(messages_of(stdin))[0]
+        for line in message2lines(it[0], it[1], it[2]):
+            print(line)
     else:
         for it in messages_of(stdin):
             for line in message2lines(it[0], it[1], it[2]):
